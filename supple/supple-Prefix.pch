@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'supple' target in the 'supple' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
