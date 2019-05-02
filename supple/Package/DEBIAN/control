@@ -1,9 +1,9 @@
 Package: com.cokepokes.supple
-Name: supple
+Name: Supple
 Version: 0.1-1
-Description: 
+Description: Loads FLEX into whatever app you have open by holding the status bar for .5 seconds. Works on A12! (Credit: NSExceptional)
 Section: Tweaks
-Depends: firmware (>= 5.0), mobilesubstrate
+Depends: firmware (>= 10.0), mobilesubstrate
 Conflicts: 
 Replaces: 
 Priority: optional
@@ -11,7 +11,8 @@ Architecture: iphoneos-arm
 Author: CokePokes
 dev: 
 Homepage: 
-Depiction: 
+Depiction:
+SileoDepiction: https://cokepokes.github.io/depiction/supple/Supple
 Maintainer: 
 Icon: 
 

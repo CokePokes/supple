@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36636F7D8262F02108C2A64A /* libPods-supple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE925C42151335131B1896A0 /* libPods-supple.a */; };
 		B51226ED227ADAE400EF9E75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51226EC227ADAE400EF9E75 /* Foundation.framework */; };
 		B51226F5227ADAE400EF9E75 /* supple.mm in Sources */ = {isa = PBXBuildFile; fileRef = B51226F4227ADAE400EF9E75 /* supple.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		433EEE6042853A2D1D02BD81 /* Pods-supple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-supple.debug.xcconfig"; path = "Target Support Files/Pods-supple/Pods-supple.debug.xcconfig"; sourceTree = "<group>"; };
 		B51226E9227ADAE400EF9E75 /* supple.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = supple.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		B51226EC227ADAE400EF9E75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B51226F1227ADAE400EF9E75 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
 		B51226F3227ADAE400EF9E75 /* supple-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "supple-Prefix.pch"; sourceTree = "<group>"; };
 		B51226F4227ADAE400EF9E75 /* supple.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = supple.mm; sourceTree = "<group>"; };
 		B51226F9227ADAE400EF9E75 /* supple.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = supple.plist; path = Package/Library/MobileSubstrate/DynamicLibraries/supple.plist; sourceTree = "<group>"; };
+		BD466CC292E12C64D5B36B31 /* Pods-supple.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-supple.release.xcconfig"; path = "Target Support Files/Pods-supple/Pods-supple.release.xcconfig"; sourceTree = "<group>"; };
+		BE925C42151335131B1896A0 /* libPods-supple.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-supple.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,18 +30,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				B51226ED227ADAE400EF9E75 /* Foundation.framework in Frameworks */,
+				36636F7D8262F02108C2A64A /* libPods-supple.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0ED47001DDE14F6488AAEC22 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BD466CC292E12C64D5B36B31 /* Pods-supple.release.xcconfig */,
+				433EEE6042853A2D1D02BD81 /* Pods-supple.debug.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B51226DF227ADAE400EF9E75 = {
 			isa = PBXGroup;
 			children = (
 				B51226EE227ADAE400EF9E75 /* supple */,
 				B51226EB227ADAE400EF9E75 /* Frameworks */,
 				B51226EA227ADAE400EF9E75 /* Products */,
+				0ED47001DDE14F6488AAEC22 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -53,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				B51226EC227ADAE400EF9E75 /* Foundation.framework */,
+				BE925C42151335131B1896A0 /* libPods-supple.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -133,6 +149,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B51226FC227ADAE400EF9E75 /* Build configuration list for PBXNativeTarget "supple" */;
 			buildPhases = (
+				4652B7CCE3ED73060D7A20D1 /* [CP] Check Pods Manifest.lock */,
 				B51226E4227ADAE400EF9E75 /* Sources */,
 				B51226E5227ADAE400EF9E75 /* Frameworks */,
 				B51226E6227ADAE400EF9E75 /* Headers */,
@@ -166,6 +183,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = B51226DF227ADAE400EF9E75;
 			productRefGroup = B51226EA227ADAE400EF9E75 /* Products */;
@@ -178,6 +196,28 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4652B7CCE3ED73060D7A20D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-supple-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B51226E7227ADAE400EF9E75 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,6 +252,13 @@
 		B51226FA227ADAE400EF9E75 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64,
+					arm64e,
+					armv7,
+					armv7s,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
@@ -224,7 +271,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
 				MonkeyDevPath = /opt/MonkeyDev;
 				MonkeyDevTheosPath = /opt/theos;
@@ -238,6 +285,13 @@
 		B51226FB227ADAE400EF9E75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64,
+					arm64e,
+					armv7,
+					armv7s,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
@@ -257,7 +311,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
 				MonkeyDevPath = /opt/MonkeyDev;
 				MonkeyDevTheosPath = /opt/theos;
@@ -271,9 +325,11 @@
 		};
 		B51226FD227ADAE400EF9E75 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD466CC292E12C64D5B36B31 /* Pods-supple.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AUYLZA5X3V;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -283,27 +339,31 @@
 				HEADER_SEARCH_PATHS = (
 					"$(MonkeyDevPath)/include",
 					"$(MonkeyDevTheosPath)/vendor/include/**",
+					"$(inherited)",
 				);
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = "";
+				MonkeyDevDeviceIP = 192.168.1.14;
 				MonkeyDevDevicePassword = "";
 				MonkeyDevDevicePort = "";
 				MonkeyDevInstallOnAnyBuild = YES;
 				MonkeyDevInstallOnProfiling = YES;
 				MonkeyDevkillProcessOnInstall = SpringBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		B51226FE227ADAE400EF9E75 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 433EEE6042853A2D1D02BD81 /* Pods-supple.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AUYLZA5X3V;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -313,18 +373,20 @@
 				HEADER_SEARCH_PATHS = (
 					"$(MonkeyDevPath)/include",
 					"$(MonkeyDevTheosPath)/vendor/include/**",
+					"$(inherited)",
 				);
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = "";
+				MonkeyDevDeviceIP = 192.168.1.14;
 				MonkeyDevDevicePassword = "";
 				MonkeyDevDevicePort = "";
 				MonkeyDevInstallOnAnyBuild = YES;
 				MonkeyDevInstallOnProfiling = YES;
 				MonkeyDevkillProcessOnInstall = SpringBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

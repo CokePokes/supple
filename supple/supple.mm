@@ -14,80 +14,66 @@
 #endif
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIWindow.h>
+
 #import "CaptainHook/CaptainHook.h"
-#include <notify.h> // not required; for examples only
 
-// Objective-C runtime hooking using CaptainHook:
-//   1. declare class using CHDeclareClass()
-//   2. load class using CHLoadClass() or CHLoadLateClass() in CHConstructor
-//   3. hook method using CHOptimizedMethod()
-//   4. register hook using CHHook() in CHConstructor
-//   5. (optionally) call old method using CHSuper()
+#import <FLEX/FLEX.h>
 
+@interface UIStatusBarWindow : UIWindow @end
 
-@interface supple : NSObject
+CHDeclareClass(UIWindow);
 
-@end
-
-@implementation supple
-
--(id)init
+CHOptimizedMethod0(self, BOOL, UIWindow, _shouldCreateContextAsSecure)
 {
-	if ((self = [super init]))
-	{
-	}
+    return [self isKindOfClass:objc_getClass("FLEXWindow")] ? YES : CHSuper0(UIWindow, _shouldCreateContextAsSecure);
+}
 
+CHOptimizedMethod1(self, id, UIWindow, initWithFrame, CGRect, frame)
+{
+    self = CHSuper1(UIWindow, initWithFrame, frame);
+    
+    id flex = [FLEXManager sharedManager];
+    //SEL toggle = @selector(toggleExplorer);
+    SEL show = @selector(showExplorer);
+    
+    UILongPressGestureRecognizer *tap = [[objc_getClass("UILongPressGestureRecognizer") alloc] initWithTarget:flex action:show];
+    tap.minimumPressDuration = .5;
+    tap.numberOfTouchesRequired = 3;
+    
+    [self addGestureRecognizer:tap];
+    
     return self;
 }
 
-@end
-
-
-@class ClassToHook;
-
-CHDeclareClass(ClassToHook); // declare class
-
-CHOptimizedMethod(0, self, void, ClassToHook, messageName) // hook method (with no arguments and no return value)
+CHDeclareClass(UIStatusBarWindow);
+CHOptimizedMethod1(self, id, UIStatusBarWindow, initWithFrame, CGRect, frame)
 {
-	// write code here ...
-	
-	CHSuper(0, ClassToHook, messageName); // call old (original) method
+    self = CHSuper1(UIStatusBarWindow, initWithFrame, frame);
+    [self addGestureRecognizer:[[objc_getClass("UILongPressGestureRecognizer") alloc] initWithTarget:FLEXManager.sharedManager action:@selector(showExplorer)]];
+    return self;
 }
 
-CHOptimizedMethod(2, self, BOOL, ClassToHook, arg1, NSString*, value1, arg2, BOOL, value2) // hook method (with 2 arguments and a return value)
-{
-	// write code here ...
 
-	return CHSuper(2, ClassToHook, arg1, value1, arg2, value2); // call old (original) method and return its return value
-}
-
-static void WillEnterForeground(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
-{
-	// not required; for example only
-}
-
-static void ExternallyPostedNotification(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
-{
-	// not required; for example only
-}
-
-CHConstructor // code block that runs immediately upon load
-{
-	@autoreleasepool
-	{
-		// listen for local notification (not required; for example only)
-		CFNotificationCenterRef center = CFNotificationCenterGetLocalCenter();
-		CFNotificationCenterAddObserver(center, NULL, WillEnterForeground, CFSTR("UIApplicationWillEnterForegroundNotification"), NULL, CFNotificationSuspensionBehaviorCoalesce);
-		
-		// listen for system-side notification (not required; for example only)
-		// this would be posted using: notify_post("com.cokepokes.supple.eventname");
-		CFNotificationCenterRef darwin = CFNotificationCenterGetDarwinNotifyCenter();
-		CFNotificationCenterAddObserver(darwin, NULL, ExternallyPostedNotification, CFSTR("com.cokepokes.supple.eventname"), NULL, CFNotificationSuspensionBehaviorCoalesce);
-		
-		// CHLoadClass(ClassToHook); // load class (that is "available now")
-		// CHLoadLateClass(ClassToHook);  // load class (that will be "available later")
-		
-		CHHook(0, ClassToHook, messageName); // register hook
-		CHHook(2, ClassToHook, arg1, arg2); // register hook
-	}
+CHConstructor {
+    @autoreleasepool {
+        NSArray *args = [[objc_getClass("NSProcessInfo") processInfo] arguments];
+        NSUInteger count = args.count;
+        if (count != 0) {
+            NSString *executablePath = args[0];
+            if (executablePath) {
+                NSString *processName = [executablePath lastPathComponent];
+                BOOL isSpringBoard = [processName isEqualToString:@"SpringBoard"];
+                BOOL isApplication = [executablePath rangeOfString:@"/Application"].location != NSNotFound;
+                if (isSpringBoard || isApplication) {
+                    CHLoadLateClass(UIWindow);
+                    CHHook0(UIWindow, _shouldCreateContextAsSecure);
+                    CHHook1(UIWindow, initWithFrame);
+                    
+                    CHLoadLateClass(UIStatusBarWindow);
+                    CHHook1(UIStatusBarWindow, initWithFrame);
+                }
+            }
+        }
+    }
 }
